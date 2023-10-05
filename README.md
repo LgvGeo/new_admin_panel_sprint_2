@@ -1,6 +1,6 @@
 # Запуск проекта
 
-Переходим в папку infra/docker-compose  и выполняем команду:  
+Переходим в папку infra/docker-compose:  
 
 Создаем .env файл с переменными окружения(пример)  
 POSTGRES_USER=app  
@@ -17,11 +17,11 @@ UWSGI_PROCESSES=1
 UWSGI_THREADS=16  
 UWSGI_HARAKIRI=240  
 
-sudo docker compose up --build
-После этого применяем миграции:
-sudo bash ../apply_migrations.sh
-Можно создать суперпользователя:
-sudo bash ../create_superuser.sh
+выполняем команду sudo docker compose up --build  
+После этого применяем миграции:  
+sudo bash ../apply_migrations.sh  
+Можно создать суперпользователя:  
+sudo bash ../create_superuser.sh  
 
 
 # Описание задания на 2 спринт
