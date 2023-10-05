@@ -1,6 +1,22 @@
 # Запуск проекта
 
-Переходим в папку infra/docker-compose  и выполняем команду:
+Переходим в папку infra/docker-compose  и выполняем команду:  
+
+Создаем .env файл с переменными окружения(пример)  
+POSTGRES_USER=app  
+POSTGRES_DB=movies_database  
+POSTGRES_PASSWORD=123qwe  
+DB_NAME=movies_database  
+DB_HOST=db  
+DB_USER=app  
+DB_PASSWORD=123qwe  
+DB_PORT=5432  
+DEBUG=True  
+SECRET_KEY=ll  
+UWSGI_PROCESSES=1  
+UWSGI_THREADS=16  
+UWSGI_HARAKIRI=240  
+
 sudo docker compose up --build
 После этого применяем миграции:
 sudo bash ../apply_migrations.sh

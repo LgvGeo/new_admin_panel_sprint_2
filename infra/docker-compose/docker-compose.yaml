@@ -3,12 +3,8 @@ version: '3.8'
 services:
   db:
     image: postgres:14.9-alpine3.18
-    environment:
-      - POSTGRES_USER=app
-      - POSTGRES_DB=movies_database
-      - POSTGRES_PASSWORD=123qwe
-    ports:
-      - 127.0.0.1:5430:5432
+    env_file: 
+      - ./.env
     volumes:
       - ../postgres_init/movies_database.ddl:/docker-entrypoint-initdb.d/movies_db.sql
       - postgres_data:/var/lib/postgresql/data/
@@ -20,17 +16,8 @@ services:
     restart: always
     depends_on:
       - db
-    environment:
-      - DB_NAME=movies_database
-      - DB_HOST=db
-      - DB_USER=app
-      - DB_PASSWORD=123qwe
-      - DB_PORT=5432
-      - DEBUG=True
-      - SECRET_KEY=ll
-      - UWSGI_PROCESSES 1
-      - UWSGI_THREADS 16
-      - UWSGI_HARAKIRI 240
+    env_file: 
+      - ./.env
     volumes:
       - static_value:/opt/app/django_static/ 
       - media_value:/opt/app/django_media/ 

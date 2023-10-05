@@ -9,8 +9,6 @@ class MoviePagination(pagination.PageNumberPagination):
         return Response({
             'count': self.page.paginator.count,
             'total_pages': self.page.paginator.num_pages,
-            'prev': None if not self.page.has_previous()
-            else self.page.previous_page_number(),
-            'next': None if not self.page.has_next()
-            else self.page.next_page_number(),
+            'prev': self.get_previous_link(),
+            'next': self.get_next_link(),
             'results': data})

@@ -27,11 +27,10 @@ class MovieSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         serialized_obj = super().to_representation(instance)
-        print(instance.persons.all())
-        actors = instance.persons.filter(personfilmwork__role='actor')
-        directors = instance.persons.filter(personfilmwork__role='director')
-        writers = instance.persons.filter(personfilmwork__role='writer')
-        genres = instance.genres.all()
+        actors = instance.actors
+        directors = instance.directors
+        writers = instance.writers
+        genres = instance.genres
         serialized_obj['genres'] = GenreForMovieSerializer(
             genres, many=True).data
         serialized_obj['actors'] = PersonForMovieSerializer(
